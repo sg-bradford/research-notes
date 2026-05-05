@@ -1,0 +1,117 @@
+\documentclass[fleqn, 12pt]{article}
+\usepackage{amsfonts, amssymb, amsmath, centernot}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\setlength{\mathindent}{20pt}
+\newcommand{\qed}[0]{$\square$}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+\section*{The Korteweg-de Vries Equation}
+\textbf{Solitons: An Introduction}
+\\
+\textbf{P. G. Drazin \& R. S. Johnson}
+\\\\
+Consider the standard one-dimensional wave equation
+\[
+    u_{tt}-c^2u_{xx}=0
+\]
+The general solution (see d'Alembert's solution) can be described as 
+\[
+u(x,t)=f(x-ct)+g(x+ct),
+\]
+where $f$ and $g$ are arbitrary functions determined by initial conditions. Note that they are not necessarily differentiable. This this is a linear differential equation (i.e. $f$ and $g$ are solutions on their own), we can consider only the waves that travel to the right. In doing so, we restrict the discussion to the solution of
+\[
+u_t+cu_x=0
+\]
+Which has the general solution
+\[
+u(x,t)=f(x-ct)
+\]
+Note that this new differential equation is a factor in the factorization of the standard one-dimensional linear wave operator. We will consider this ``right travelling" wave equation here, for $c=1$.
+\\\\
+The simplest dispersive wave equation (equations governing waves that exhibit frequency dispersion, meaning waves of different wavelengths travel at different phase speeds) is
+\[
+u_t+u_x+u_{xxx}=0.
+\]
+We show that
+\[
+u(x,t)=e^{i(kx-\omega t)}
+\]
+is a solution to this equation if $\omega=k-k^3$.
+\[
+-i\omega e^{i(kx-\omega t)}+ike^{i(kx-\omega t)}-ik^3e^{i(kx-\omega t)}=0
+\]
+\[
+\implies (\omega-k+k^3)e^{i(kx-\omega t)}=0
+\]
+\[
+\implies\omega=k-k^3.
+\]
+$\omega=k-k^3$ is called the dispersion relation - a function $\omega(k)$. We call $k\in\R$ the wave number, and $\omega$ the frequency. Since
+\[
+kx-\omega t=k(x-(1-k^2)t),
+\]
+the solution propagates at a velocity of
+\[
+c=\frac{\omega}{k}=1-k^2.
+\]
+We can consider a general solution by integrating over all $k\in\R$
+\[
+u(x,t)=\int_\infty^\infty A(k)e^{i(kx-w(k)t)}dk,
+\]
+where $A(k)$ is the Fourier transform of $u(x,0)$. Notice that $\omega=k-k^3$ implies that $\omega_k=1-3k^2$. This relation gives us the group velocity - the velocity of a wave packet. It's also the velocity of the progagation of energy.
+\[
+c_g=1-3k^2.
+\]
+Here, we have $\omega:\R\to\R$, but this is only true if we add a term with odd derivatives. If we instead consider
+\[
+u_t+u_x-u_{xx}=0,
+\]
+we arrive at the dispersion relation $\omega=k-ik^2$. Then for $k\in\R$, we have
+\[
+u(t,x)=e^{-k^2t}e^{ik(x-t)}
+\]
+Which describes a wave that decays as $t\to\infty$ for $k\neq0$, and moves at a speed of unity for all $k\in\R$. This type of wave decay is called dissipation.
+\\\\
+The standard wave equation is generally only valid for small amplitudes. A better approximation in many cases is
+\[
+u_t+(1+u)u_x=0
+\]
+This includes the simplest type of nonlinearity ($uu_x$). Using the method of characteristics, we have
+\[
+\frac{dx}{dt}=1+u\implies\int dx=\int(1+u)dt\implies x=(1+u)t+x_0
+\]
+Along these curves,
+\[
+\frac{du}{dt}=0\implies u(t,x)=f(x)\implies u(0,x_0)=f(x_0)=f(x-(1+u)t)
+\]
+\[
+\implies u(t,x)=f(x-(1+u)t)
+\]
+Such a wave (say, for $f>0$) is single valued for finite time, but will eventually become multivalued and ``break'' (like an ocean wave). We can also consider nonlinear wave equations with dispersive or dissipative terms, such as the Korteweg-de Vries equation (nonlinearity $+$ dispersion):
+\[
+u_t+(1+u)u_x+u_{xxx}=0
+\]
+Or the Burgers equation (nonlinearity $+$ dissipation):
+\[
+u_t+(1+u)u_x-u_{xx}=0
+\]
+For the KdV equation, we can consider the transformations
+\[
+1+u\to\alpha u\text{,\quad\quad}t\to\beta t\text{,\quad\quad}x\to\gamma x
+\]
+where $\alpha,\beta,\gamma$ are nonzero real constants, to yield
+\[
+u_t+\frac{\alpha\beta}{\gamma}uu_x+\frac{\beta}{\gamma^3}u_{xxx}=0.
+\]
+A common convention is
+\[
+u_t-6uu_x+u_{xxx}=0.
+\]
+Note that higher dimension KdV equations exist (ring waves, waves crossing obliquely).
+\end{document}

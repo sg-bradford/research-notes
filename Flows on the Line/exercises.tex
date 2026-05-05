@@ -1,0 +1,121 @@
+\documentclass[fleqn]{article}
+\usepackage{amsfonts, amssymb, amsmath, centernot}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\setlength{\mathindent}{20pt}
+\newcommand{\qed}[0]{$\square$}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+\section*{Nonlinear Dynamics and Chaos - Chapter 2: Flows on the Line}
+\section*{A Geometric Way of Thinking:}
+Consider $\dot{x}=\sin(x)$ as a flow on the $x$-axis in the next three problems.
+\\\\
+\textbf{Problem 2.1.1} Find all the fixed points on the flow.
+\\\\
+Fixed points occur when $\sin(x)=0$, so $x=n\pi$ for $n\in\Z$ are the fixed points of this system.
+\\\\
+\textbf{Problem 2.1.2} At which points $x$ does the flow have the greatest velocity to the right?
+\\\\
+Since $\sin(x)>0$ for some points $x$, the flow to the right is greatest when $\sin(x)$ attains its global maximum. So $x=2\pi n+\frac{\pi}{2}$ for $n\in\Z$.
+\\\\
+\textbf{Problem 2.1.3a} Find the flow's acceleration $\ddot{x}$ as a function of $x$.
+\[
+\frac{dx}{dt}=\sin(x)\implies\frac{d^2x}{dt^2}=\frac{d}{dt}\sin(x)=\cos(x)\frac{dx}{dt}=\cos(x)\sin(x)
+\]
+Thus we have $\ddot{x}=\sin(x)\cos(x)$.
+\\\\
+\textbf{Problem 2.1.3b} Find the points where the flow has maximum positive acceleration.
+\\\\
+First, we find the local extrema of $\ddot{x}$ as a function of $x$.
+\[
+\frac{d}{dx}\ddot{x}=[\cos(x)]\cos(x)+\sin(x)[-\sin(x)]=\cos^2(x)-\sin^2(x)
+\]
+\[
+\frac{d}{dx}\ddot{x}=0\implies\cos^2(x)=\sin^2(x)\implies\cos(x)=\pm\sin(x)
+\]
+The local maximums occur when $x$ satisfies $\cos(x)=\sin(x)$, and the local minimums occur when $x$ satisfies $\cos(x)=-\sin(x)$. We are interested in the former. Thus, $x=n\pi+\frac{\pi}{4}$, for $n\in\Z$. The maximum positive acceleration is $\ddot{x}=\frac{1}{2}$.
+\\\\
+\textbf{Problem 2.4.1a} The exact solution of $\dot{x}=\sin(x)$, where $x(0)=x_0$, is:
+\[
+t=\ln\left|\frac{\csc(x_0)+\cot(x_0)}{\csc(x)+\cot(x)}\right|.
+\]
+Given the initial condition $x_0=\frac{\pi}{4}$, show that
+\[
+x(t)=2\tan^{-1}\left(\frac{e^t}{1+\sqrt{2}}\right).
+\]
+For $x_0=\frac{\pi}{4}$, we have
+\[
+t=\ln\left|\frac{1+\sqrt{2}}{\csc(x)+\cot(x)}\right|\implies e^t=\frac{1+\sqrt{2}}{\csc(x)+\cot(x)}\implies\frac{1}{\csc(x)+\cot(x)}=\frac{e^t}{1+\sqrt{2}}.
+\]
+So we wish to show that
+\[
+\frac{1}{\csc(x)+\cot(x)}=\tan(\frac{x}{2}).
+\]
+Recall the double angle identities
+\[
+\sin(2x)=2\sin(x)\cos(x),
+\]
+\[
+\cos(2x)=2\cos^2(x)-1.
+\]
+Thus we have
+\[
+\frac{1}{\csc(x)+\cot(x)}=\frac{1}{\frac{1}{\sin(x)}+\frac{\cos(x)}{\sin(x)}}=\frac{\sin(x)}{1+\cos(x)}=\frac{2\sin(\frac{x}{2})\cos(\frac{x}{2})}{2\cos^2(\frac{x}{2})}=\frac{\sin(\frac{x}{2})}{\cos(\frac{x}{2})}=\tan(\frac{x}{2}).
+\]
+Finally,
+\[
+\tan(\frac{x}{2})=\frac{e^t}{1+\sqrt{2}}\implies x(t)=2\tan^{-1}\left(\frac{e^t}{1+\sqrt{2}}\right).
+\]
+\textbf{Problem 2.1.4b} Find the analytical solution for $x(t)$ given an arbitrary initial condition $x_0$.
+\\\\
+We can simply write
+\[
+x(t)=2\tan^{-1}\left(\frac{e^t}{\csc(x_0)+\cot(x_0)}\right).
+\]
+\section*{Fixed Points and Stability:}
+In each of the following equations, find all fixed points, classify their stability, and find an analytic solution, if possible.
+\\\\
+\textbf{Problem 2.2.1} $\dot{x}=4x^2-16$
+\\\\
+$\dot{x}=4(x-2)(x+2)$, so the fixed points are $x^*=\pm2$. Considering the sign of $f'(x^*)$ for each, $x^*=-2$ is stable, and $x^*=2$ is unstable. We have
+\[
+\frac{dx}{dt}=4x^2-16\implies\frac{1}{4}\int\frac{dx}{x^2-4}=\int dt\implies t=\frac{1}{16}\left(\int\frac{dx}{x-2}-\int\frac{dx}{x+2}\right)
+\]
+\[
+\implies t=\frac{1}{16}(\ln|x-2|-\ln|x+2|)+C\implies t=t=\frac{1}{16}\ln\left|\frac{x-2}{x+2}\right|+C
+\]
+Suppose that $x(0)=x_0$. Then we have
+\[
+C=\frac{1}{16}\ln\left|\frac{x_0+2}{x_0-2}\right|
+\]
+So we have
+\[
+t=\frac{1}{16}\ln\left|\frac{(x_0+2)(x-2)}{(x_0-2)(x+2)}\right|
+\]
+Let $K=\frac{(x_0-2)}{(x_0+2)}$. Rearranging in terms of $x$, we get
+\[
+\frac{(x-2)}{K(x+2)}=e^{16t}\implies x-2=Ke^{16t}(x+2)\implies (1-Ke^{16t})x=2(Ke^{16t}+1)
+\]
+Thus an explicit solution is
+\[
+x(t)=2\left(\frac{Ke^{16t}+1}{1-Ke^{16t}}\right)
+\]
+\textbf{Problem 2.2.7} $\dot{x}=e^x-\cos(x)$
+\\\\
+There are an infinite number of fixed points, i.e. solutions to $e^x-\cos(x)=0$. The rightmost solution is $x^*=0$.
+\[
+\frac{d}{dx}(e^x-\cos(x))=e^x+\sin(x)
+\]
+So at $x^*=0$, $\dot{x}>0$, and thus $x^*=0$ is unstable. We can also make some qualitative statements about the infinite number of fixed points for $x^*<0$. Since $e^x\to0$ as $x\to-\infty$, the fixed points are better approximated by solutions to $\cos(x)=0$ at $x\to-\infty$. Furthermore, since $\cos(x)$ oscillates continuously about the $x$-axis, the stability of these fixed points will alternate between stable and unstable. Since $\frac{d}{dx}e^x\to0$ as $x\to\infty$, and $\left|\frac{d}{dx}\cos(x)\right|_{x=x^*}=1$, the characteristic time scale $\frac{1}{|f'(x^*)|}\to1$ as $x\to\infty$. There is no explicit analytic solution to this differential equation.
+\section*{Population Growth:}
+\section*{Linear Stability Analysis:}
+\section*{Existence and Uniqueness:}
+\section*{Impossibility of Oscillations:}
+\section*{Potentials:}
+\section*{Solving Equations on the Computer:}
+\end{document}
